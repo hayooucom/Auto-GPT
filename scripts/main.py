@@ -92,11 +92,11 @@ def print_assistant_thoughts(assistant_reply):
             assistant_thoughts_criticism = assistant_thoughts.get("criticism")
             assistant_thoughts_speak = assistant_thoughts.get("speak")
 
-        logger.typewriter_log(f"{ai_name.upper()} THOUGHTS:", Fore.YELLOW, assistant_thoughts_text)
-        logger.typewriter_log("REASONING:", Fore.YELLOW, assistant_thoughts_reasoning)
+        logger.typewriter_log(f"{ai_name.upper()} 想法:", Fore.YELLOW, assistant_thoughts_text)
+        logger.typewriter_log("原因:", Fore.YELLOW, assistant_thoughts_reasoning)
 
         if assistant_thoughts_plan:
-            logger.typewriter_log("PLAN:", Fore.YELLOW, "")
+            logger.typewriter_log("计划:", Fore.YELLOW, "")
             # If it's a list, join it into a string
             if isinstance(assistant_thoughts_plan, list):
                 assistant_thoughts_plan = "\n".join(assistant_thoughts_plan)
@@ -109,7 +109,7 @@ def print_assistant_thoughts(assistant_reply):
                 line = line.lstrip("- ")
                 logger.typewriter_log("- ", Fore.GREEN, line.strip())
 
-        logger.typewriter_log("CRITICISM:", Fore.YELLOW, assistant_thoughts_criticism)
+        logger.typewriter_log("评论:", Fore.YELLOW, assistant_thoughts_criticism)
         # Speak the assistant's thoughts
         if cfg.speak_mode and assistant_thoughts_speak:
             speak.say_text(assistant_thoughts_speak)
