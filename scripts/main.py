@@ -148,12 +148,12 @@ def load_variables(config_file="config.yaml"):
     if not ai_role:
         ai_role = utils.clean_input(f"{ai_name} is: ")
         if ai_role == "":
-            ai_role = "an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth."
+            ai_role = "一种旨在自主开发和经营业务的人工智能，其唯一目标是增加你的净资产。"
 
     if not ai_goals:
-        print("Enter up to 5 goals for your AI: ")
-        print("For example: \nIncrease net worth, Grow Twitter Account, Develop and manage multiple businesses autonomously'")
-        print("Enter nothing to load defaults, enter nothing when finished.")
+        print("为您的 AI 输入最多 5 个目标：")
+        print("例如：\n增加净资产、增加 Twitter 帐户、自主开发和管理多个业务'")
+        print("不输入任何内容以加载默认值，完成后不输入任何内容。")
         ai_goals = []
         for i in range(5):
             ai_goal = utils.clean_input(f"Goal {i+1}: ")
@@ -212,53 +212,52 @@ Continue (y/n): """)
 def prompt_user():
     """Prompt the user for input"""
     ai_name = ""
-    # Construct the prompt
     logger.typewriter_log(
-        "Welcome to Auto-GPT! ",
-        Fore.GREEN,
-        "Enter the name of your AI and its role below. Entering nothing will load defaults.",
-        speak_text=True)
+    "欢迎使用Auto-GPT！",
+    Fore.GREEN,
+    "请在下方输入您的AI名称和其角色。不输入任何内容将加载默认值。",
+    speak_text=True)
 
-    # Get AI Name from User
+    # 获取用户输入的AI名称
     logger.typewriter_log(
-        "Name your AI: ",
+        "为您的AI命名：",
         Fore.GREEN,
-        "For example, 'Entrepreneur-GPT'")
-    ai_name = utils.clean_input("AI Name: ")
+        "例如，“企业家-GPT”")
+    ai_name = utils.clean_input("AI名称：")
     if ai_name == "":
-        ai_name = "Entrepreneur-GPT"
+        ai_name = "企业家-GPT"
 
     logger.typewriter_log(
-        f"{ai_name} here!",
+        f"{ai_name}报道！",
         Fore.LIGHTBLUE_EX,
-        "I am at your service.",
+        "我将竭诚为您服务。",
         speak_text=True)
 
-    # Get AI Role from User
+    # 获取用户输入的AI角色
     logger.typewriter_log(
-        "Describe your AI's role: ",
+        "描述您的AI角色：",
         Fore.GREEN,
-        "For example, 'an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.'")
-    ai_role = utils.clean_input(f"{ai_name} is: ")
+        "例如，“一种旨在自主开发和经营企业，唯一目标是增加您的净值的AI。”")
+    ai_role = utils.clean_input(f"{ai_name}的角色是：")
     if ai_role == "":
         ai_role = "an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth."
 
-    # Enter up to 5 goals for the AI
+    # 输入AI的最多5个目标
     logger.typewriter_log(
-        "Enter up to 5 goals for your AI: ",
+        "为您的AI输入最多5个目标：",
         Fore.GREEN,
-        "For example: \nIncrease net worth, Grow Twitter Account, Develop and manage multiple businesses autonomously'")
-    print("Enter nothing to load defaults, enter nothing when finished.", flush=True)
+        "例如：\n增加净值、增长Twitter账户、自主开发和管理多个企业'")
+    print("完成后不输入任何内容即可加载默认值。", flush=True)
     ai_goals = []
     for i in range(5):
-        ai_goal = utils.clean_input(f"{Fore.LIGHTBLUE_EX}Goal{Style.RESET_ALL} {i+1}: ")
+        ai_goal = utils.clean_input(f"{Fore.LIGHTBLUE_EX}目标{Style.RESET_ALL} {i+1}：")
         if ai_goal == "":
             break
         ai_goals.append(ai_goal)
     if len(ai_goals) == 0:
         ai_goals = ["Increase net worth", "Grow Twitter Account",
-                    "Develop and manage multiple businesses autonomously"]
-
+                    "Develop and manage multiple businesses autonomously","manage employ"]
+        
     config = AIConfig(ai_name, ai_role, ai_goals)
     return config
 
@@ -368,7 +367,7 @@ while True:
             Fore.CYAN,
             f"COMMAND = {Fore.CYAN}{command_name}{Style.RESET_ALL}  ARGUMENTS = {Fore.CYAN}{arguments}{Style.RESET_ALL}")
         print(
-            f"Enter 'y' to authorise command, 'y -N' to run N continuous commands, 'n' to exit program, or enter feedback for {ai_name}...",
+            f"输入'y'授权命令，'y -N'运行N个连续命令，'n'退出程序，或输入反馈 {ai_name}...",
             flush=True)
         while True:
             console_input = utils.clean_input(Fore.MAGENTA + "Input:" + Style.RESET_ALL)
